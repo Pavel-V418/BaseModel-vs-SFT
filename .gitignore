@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.idea/
+
+# Данные, веса, логи — не храним в git
+data/*
+!data/.gitkeep
+outputs/*
+!outputs/.gitkeep
+*.safetensors
+*.bin
+*.pt
+wandb/
+runs/
+
+# Секреты
+.env

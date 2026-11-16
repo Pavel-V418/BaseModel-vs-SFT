@@ -1,0 +1,13 @@
+# Версии зафиксировать на этапе 0 по тем, что ставятся в Kaggle (pip freeze)
+torch
+transformers
+datasets
+trl
+peft
+bitsandbytes
+accelerate
+wandb
+pyyaml
+pandas
+matplotlib
+pytest

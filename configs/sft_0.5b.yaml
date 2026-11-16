@@ -1,0 +1,21 @@
+# Пример конфига запуска SFT. Имя запуска: {тип}_{модель}_{данные}_{параметры}_s{seed}
+run_name: sft_0.5b_n7000_r16_lr1e-4_s42
+model: Qwen/Qwen2.5-0.5B
+train_size: null        # null = весь train
+seed: 42
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: all-linear
+
+training:
+  learning_rate: 1.0e-4
+  num_train_epochs: 2
+  per_device_train_batch_size: 8
+  gradient_accumulation_steps: 2
+  max_length: 1024
+  eval_steps: 100
+  fp16: true
+  bf16: false
