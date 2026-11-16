@@ -20,3 +20,4 @@ runs/
 
 # Секреты
 .env
+third_party/
