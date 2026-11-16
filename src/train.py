@@ -5,6 +5,9 @@
     python -m src.train --config configs/sft_0.5b.yaml --set train_size=2000 --set lora.r=32
     python -m src.train --config configs/sft_0.5b.yaml --smoke     # 10 шагов на игрушечных данных
 
+Живой лог для графиков во время обучения: results/<run_name>_live.json
+(обновляется на каждом logging/eval шаге; рисовать: python -m src.plots <файл>).
+
 Что делает:
     1. Загружает base-модель и prompt/completion-данные (data/*.jsonl).
     2. Считает validation loss ДО обучения (это loss base-модели:
@@ -22,6 +25,7 @@ import time
 from pathlib import Path
 
 from datasets import load_dataset
+from transformers import TrainerCallback
 
 from src.utils import (
     count_parameters,
@@ -126,6 +130,45 @@ def build_peft_config(cfg: dict):
     )
 
 
+# ---------------------------------------------------------------- живой лог
+
+class LiveLogCallback(TrainerCallback):
+    """Пишет все логи (train + eval) в JSON на каждом шаге логирования,
+    чтобы ноутбук мог рисовать графики, пока идёт обучение.
+
+    Ведёт свою историю, а не trainer.state.log_history: trainer.train()
+    пересоздаёт state, и eval_loss base-модели (до обучения) иначе теряется.
+    phase: before (оценка base) -> train -> after (итоговая оценка) -> done.
+    """
+
+    def __init__(self, path: Path, run_name: str):
+        self.path = Path(path)
+        self.run_name = run_name
+        self.phase = "before"
+        self.history: list[dict] = []
+        self.max_steps = 0
+        self.num_train_epochs = None
+
+    def dump(self) -> None:
+        tmp = self.path.with_suffix(".tmp")
+        save_json({"run_name": self.run_name, "phase": self.phase,
+                   "max_steps": self.max_steps, "num_train_epochs": self.num_train_epochs,
+                   "updated": time.time(), "history": self.history}, tmp)
+        os.replace(tmp, self.path)  # атомарно: ноутбук не прочитает полфайла
+
+    def on_train_begin(self, args, state, control, **kwargs):
+        self.phase = "train"
+        self.max_steps = state.max_steps
+        self.num_train_epochs = state.num_train_epochs
+        self.dump()
+
+    def on_log(self, args, state, control, logs=None, **kwargs):
+        if not state.is_world_process_zero or not logs:
+            return
+        self.history.append({**logs, "step": state.global_step, "phase": self.phase})
+        self.dump()
+
+
 # ---------------------------------------------------------------- проверки
 
 def sanity_check(trainer, tokenizer) -> None:
@@ -192,6 +235,9 @@ def main() -> None:
         processing_class=tokenizer,
         peft_config=build_peft_config(cfg),
     )
+    live = LiveLogCallback(res_dir / f"{run_name}_live.json", run_name)
+    trainer.add_callback(live)
+    live.dump()
     params = count_parameters(trainer.model)
     print(f"Параметры: всего {params['total']:,}, обучаемых {params['trainable']:,} "
           f"({100 * params['trainable'] / params['total']:.2f}%)")
@@ -207,6 +253,7 @@ def main() -> None:
     train_time = time.time() - t0
 
     # --- 3. validation loss ПОСЛЕ (лучший чекпоинт)
+    live.phase = "after"
     after = trainer.evaluate()
     print(f"[sft]  eval_loss = {after['eval_loss']:.4f}")
 
@@ -235,6 +282,16 @@ def main() -> None:
     save_json(summary, res_dir / f"{run_name}_train.json")
     # полная история логов — чтобы строить кривые loss без W&B
     save_json(trainer.state.log_history, res_dir / f"{run_name}_log_history.json")
+    live.phase = "done"
+    live.dump()
+    # итоговые графики
+    try:
+        from src.plots import plot_history
+        png = res_dir / f"{run_name}_curves.png"
+        plot_history(live.path, out=png)
+        print(f"Графики: {png}")
+    except Exception as e:  # графики не должны ронять запуск
+        print(f"Не удалось построить графики: {e}")
 
     if cfg.get("hub_repo") and not args.smoke:
         trainer.model.push_to_hub(cfg["hub_repo"])
