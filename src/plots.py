@@ -93,7 +93,8 @@ def plot_history(src, out: str | Path | None = None, title: str | None = None):
         ax_loss.axhline(b, color=BASE_COLOR, linestyle="--", linewidth=1.2,
                         label=f"base (до SFT) {b:.3f}")
     _style(ax_loss, "Loss (только по SQL)")
-    ax_loss.legend(frameon=False, fontsize=9)
+    if ax_loss.lines:
+        ax_loss.legend(frameon=False, fontsize=9)
 
     # --- 2. token accuracy
     xs, ys = _series(train_logs, "mean_token_accuracy")
