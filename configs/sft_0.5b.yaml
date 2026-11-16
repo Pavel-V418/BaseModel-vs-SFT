@@ -1,8 +1,17 @@
-# Пример конфига запуска SFT. Имя запуска: {тип}_{модель}_{данные}_{параметры}_s{seed}
-run_name: sft_0.5b_n7000_r16_lr1e-4_s42
+# Основной запуск: SFT Qwen2.5-0.5B (base) + LoRA на Spider.
+# Имя запуска: {тип}_{модель}_{данные}_{параметры}_s{seed}
+run_name: sft_0.5b_nall_r16_lr1e-4_s42
 model: Qwen/Qwen2.5-0.5B
-train_size: null        # null = весь train
+method: lora              # lora | qlora | full
 seed: 42
+
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+train_size: null          # null = весь train; для эксперимента: 500 / 2000
+val_size: 300             # валидация каждые eval_steps — держим небольшой
+
+completion_only_loss: true   # loss только по SQL (эксперимент: false)
 
 lora:
   r: 16
@@ -11,11 +20,18 @@ lora:
   target_modules: all-linear
 
 training:
-  learning_rate: 1.0e-4
+  learning_rate: 1.0e-4   # для full FT: 2.0e-5
   num_train_epochs: 2
   per_device_train_batch_size: 8
+  per_device_eval_batch_size: 8
   gradient_accumulation_steps: 2
   max_length: 1024
+  warmup_steps: 50
+  lr_scheduler_type: cosine
   eval_steps: 100
-  fp16: true
-  bf16: false
+  logging_steps: 10
+  gradient_checkpointing: true
+
+report_to: wandb          # wandb | tensorboard | none
+wandb_project: base-vs-sft
+hub_repo: null            # например <org>/qwen2.5-0.5b-spider-sft
