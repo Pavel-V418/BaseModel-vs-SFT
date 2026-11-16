@@ -1,0 +1,29 @@
+# Бонус: полный fine-tuning 0.5B (все веса). Влезает в T4 с batch 4 + checkpointing.
+run_name: sft_0.5b_nall_full_lr2e-5_s42
+model: Qwen/Qwen2.5-0.5B
+method: full
+seed: 42
+
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+train_size: null
+val_size: 300
+completion_only_loss: true
+
+training:
+  learning_rate: 2.0e-5
+  num_train_epochs: 2
+  per_device_train_batch_size: 4
+  per_device_eval_batch_size: 4
+  gradient_accumulation_steps: 4
+  max_length: 1024
+  warmup_steps: 50
+  lr_scheduler_type: cosine
+  eval_steps: 100
+  logging_steps: 10
+  gradient_checkpointing: true
+
+report_to: wandb
+wandb_project: base-vs-sft
+hub_repo: null

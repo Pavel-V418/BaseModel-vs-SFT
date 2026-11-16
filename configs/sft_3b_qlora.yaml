@@ -1,0 +1,35 @@
+# Бонус: Qwen2.5-3B через QLoRA (4-битная base-модель) — влезает в T4.
+run_name: sft_3b_nall_qlora_r16_lr1e-4_s42
+model: Qwen/Qwen2.5-3B
+method: qlora
+seed: 42
+
+data:
+  train: data/train.jsonl
+  val: data/val.jsonl
+train_size: null
+val_size: 300
+completion_only_loss: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: all-linear
+
+training:
+  learning_rate: 1.0e-4
+  num_train_epochs: 2
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_length: 1024
+  warmup_steps: 50
+  lr_scheduler_type: cosine
+  eval_steps: 100
+  logging_steps: 10
+  gradient_checkpointing: true
+
+report_to: wandb
+wandb_project: base-vs-sft
+hub_repo: null

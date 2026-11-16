@@ -69,7 +69,15 @@ def save_json(obj: Any, path: str | Path) -> None:
 # ---------------------------------------------------------------- GPU
 
 def gpu_supports_bf16() -> bool:
-    return torch.cuda.is_available() and torch.cuda.is_bf16_supported()
+    """Нативный bf16 есть только с Ampere (compute capability >= 8.0: A100, H100, RTX 30xx+).
+
+    torch.cuda.is_bf16_supported() на T4 (7.5) возвращает True из-за программной
+    эмуляции — она медленная и может ломать AMP, поэтому смотрим на архитектуру.
+    """
+    if not torch.cuda.is_available():
+        return False
+    major, _ = torch.cuda.get_device_capability(0)
+    return major >= 8
 
 
 def compute_dtype() -> txorch.dtype:
