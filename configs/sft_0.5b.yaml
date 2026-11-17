@@ -13,10 +13,11 @@ val_size: 300             # валидация каждые eval_steps — де�
 
 completion_only_loss: true   # loss только по SQL (эксперимент: false)
 
+# Идея LoRA - к замороженной матрице весов W добавляется поправка B·A, где A и B — узкие матрицы ранга r. Обучаются только A и B.
 lora:
-  r: 16
-  alpha: 32
-  dropout: 0.05
+  r: 16 # ранг (ширина поправки)
+  alpha: 32 # масштаб поправки
+  dropout: 0.05 # на каждом этапе случайно обнуляются 5% чисел (защита от переобучения)
   target_modules: all-linear
 
 training:
@@ -25,13 +26,13 @@ training:
   per_device_train_batch_size: 8
   per_device_eval_batch_size: 8
   gradient_accumulation_steps: 2
-  max_length: 1024
-  warmup_steps: 50
-  lr_scheduler_type: cosine
-  eval_steps: 100
-  logging_steps: 10
+  max_length: 1024 # макс длина примера в токенах
+  warmup_steps: 50 # первые 50 шагов lr плавно растёт
+  lr_scheduler_type: cosine # после плавно спадает (вначале большие шаги, затем меньше)
+  eval_steps: 100 # каждые 100 шагов - val loss
+  logging_steps: 10 # каждые 10 шагов - train loss
   gradient_checkpointing: true
 
-report_to: wandb          # wandb | tensorboard | none
+report_to: wandb          # wandb | tensorboard | none - куда класть метрики
 wandb_project: base-vs-sft
 hub_repo: null            # например <org>/qwen2.5-0.5b-spider-sft

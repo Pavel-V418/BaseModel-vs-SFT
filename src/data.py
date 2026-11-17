@@ -379,8 +379,8 @@ def parse_args(argv=None):
     p.add_argument("--tokenizer", default=DEFAULT_TOKENIZER, help="'' чтобы не считать токены")
     p.add_argument("--max_length", type=int, default=DEFAULT_MAX_LENGTH)
     p.add_argument("--show", type=int, default=3, help="сколько случайных примеров напечатать")
+    p.add_argument("--include_others", action="store_true", help="добавить train_others.json в обучающую выборку")
     return p.parse_args(argv)
-
 
 def main(argv=None) -> dict:
     args = parse_args(argv)
@@ -393,6 +393,14 @@ def main(argv=None) -> dict:
         raw_test = json.load(f)
 
     raw_train_split, raw_val_split = split_by_db(raw_train, args.val_size, args.seed)
+
+    if args.include_others:
+        others_path = spider_dir / "train_others.json"
+        if others_path.exists():
+            with open(others_path, encoding="utf-8") as f:
+                raw_others = json.load(f)
+            raw_train_split.extend(raw_others)
+            print(f"Добавлено {len(raw_others)} примеров из train_others.json")
 
     splits, dropped = {}, []
     for name, raw in [("train", raw_train_split), ("val", raw_val_split), ("test", raw_test)]:
@@ -424,7 +432,6 @@ def main(argv=None) -> dict:
     with open(args.out_dir / "stats.json", "w", encoding="utf-8") as f:
         json.dump(stats, f, ensure_ascii=False, indent=2)
 
-    # Сводка в консоль
     for name in ("train", "val", "test"):
         s = stats["splits"][name]
         tok = s.get("tokens_prompt_plus_completion")
@@ -436,7 +443,6 @@ def main(argv=None) -> dict:
             print(r["prompt"] + r["completion"])
     print(f"\nГотово: {args.out_dir}/{{train,val,test,fewshot}}.jsonl + stats.json")
     return stats
-
 
 if __name__ == "__main__":
     main()
