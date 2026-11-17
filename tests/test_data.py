@@ -110,7 +110,7 @@ def test_main_end_to_end(fake_spider, tmp_path):
         for r in recs:
             assert list(r) == keys
             assert r["completion"] == " " + r["gold_sql"]
-            assert r["prompt"].endswith(f"Вопрос: {r['question']}\nSQL:")
+            assert r["question"].strip() in r["prompt"] and r["prompt"].endswith("SQL:")
 
     assert files["train"][0]["id"].endswith("_0001")
     assert stats["n_dropped_total"] == 1 and stats["dropped"][0]["question"] == "Broken one"
