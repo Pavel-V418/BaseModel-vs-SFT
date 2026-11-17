@@ -1,0 +1,8 @@
+{
+  "model": "Qwen/Qwen2.5-0.5B",
+  "mode": "zero",
+  "gpu": "Tesla T4",
+  "torch": "2.14.1+cu130",
+  "test_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+  "source_bundle_sha256": "2efb3095ae5541c180fcbfcf6691338699036bb8da133b6cc314b68842eb84c2"
+}

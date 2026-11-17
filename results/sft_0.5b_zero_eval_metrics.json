@@ -1,0 +1,49 @@
+{
+  "run_name": "sft_0.5b_zero",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "adapter": "/content/BaseModel-vs-SFT/outputs/sft_0.5b_nall_r16_lr1e-4_s42/final",
+  "mode": "zero",
+  "num_examples": 1034,
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left",
+    "num_beams": 1
+  },
+  "query_timeout_seconds": 5.0,
+  "overall": {
+    "execution_accuracy": 0.4922630560928433,
+    "exact_match": 0.316247582205029,
+    "valid_sql_rate": 0.7340425531914894,
+    "stop_rate": 0.9990328820116054
+  },
+  "by_difficulty": {
+    "easy": {
+      "execution_accuracy": 0.7782258064516129,
+      "exact_match": 0.6048387096774194,
+      "valid_sql_rate": 0.9314516129032258,
+      "stop_rate": 1.0
+    },
+    "medium": {
+      "execution_accuracy": 0.47085201793721976,
+      "exact_match": 0.29596412556053814,
+      "valid_sql_rate": 0.7197309417040358,
+      "stop_rate": 1.0
+    },
+    "hard": {
+      "execution_accuracy": 0.41379310344827586,
+      "exact_match": 0.21264367816091953,
+      "valid_sql_rate": 0.6954022988505747,
+      "stop_rate": 1.0
+    },
+    "extra": {
+      "execution_accuracy": 0.20481927710843373,
+      "exact_match": 0.04819277108433735,
+      "valid_sql_rate": 0.5180722891566265,
+      "stop_rate": 0.9939759036144579
+    }
+  },
+  "evaluation_version": 2,
+  "rescored_from": "20261117_145842_results.zip"
+}

@@ -1,0 +1,97 @@
+{
+  "evaluation_version": 2,
+  "dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+  "source_bundle_sha256": "2efb3095ae5541c180fcbfcf6691338699036bb8da133b6cc314b68842eb84c2",
+  "gpu": "Tesla T4",
+  "torch": "2.14.1+cu130",
+  "runs": [
+    "20261117_145842",
+    "20261117_152306"
+  ],
+  "models": {
+    "base": {
+      "original_jsonl_sha256": "b5eda28c3190bd1e589637af64e62abf1309d96acd594a9f1349cba69241f442",
+      "published_jsonl_sha256": "b5eda28c3190bd1e589637af64e62abf1309d96acd594a9f1349cba69241f442",
+      "full_runs_identical": true,
+      "changes": [],
+      "published_metrics": {
+        "execution_accuracy": 0.24468085106382978,
+        "exact_match": 0.07930367504835589,
+        "valid_sql_rate": 0.6160541586073501,
+        "stop_rate": 0.769825918762089
+      },
+      "n": 1034
+    },
+    "sft": {
+      "original_jsonl_sha256": "add8d55ef538629c7c8d45363229101f60fd02fba3fb51b46f0ea62f425e073c",
+      "published_jsonl_sha256": "add8d55ef538629c7c8d45363229101f60fd02fba3fb51b46f0ea62f425e073c",
+      "full_runs_identical": true,
+      "changes": [],
+      "published_metrics": {
+        "execution_accuracy": 0.4922630560928433,
+        "exact_match": 0.316247582205029,
+        "valid_sql_rate": 0.7340425531914894,
+        "stop_rate": 0.9990328820116054
+      },
+      "n": 1034
+    }
+  },
+  "original_comparison": {
+    "base": {
+      "execution_accuracy": 0.24468085106382978,
+      "exact_match": 0.07930367504835589,
+      "valid_sql_rate": 0.6160541586073501,
+      "stop_rate": 0.769825918762089
+    },
+    "sft": {
+      "execution_accuracy": 0.4922630560928433,
+      "exact_match": 0.316247582205029,
+      "valid_sql_rate": 0.7340425531914894,
+      "stop_rate": 0.9990328820116054
+    }
+  },
+  "archives": {
+    "20261117_145842_results.zip": {
+      "sha256": "3583b0e45cc900e09f36b48b0508fde0043b26d2db917c778b979dfecd305da0",
+      "bytes": 143791
+    },
+    "20261117_152306_results.zip": {
+      "sha256": "f1c8cfd29feb7b94b495407e9bd497661294fd7d1e20a38e6c57e9db89735c2a",
+      "bytes": 143770
+    },
+    "BaseModel-vs-SFT-export.zip": {
+      "sha256": "e5e9dcc72d369ef1529bbf166b1defec44fba64026db7f02f6e9a443e2a57877",
+      "bytes": 89249181
+    },
+    "basemodel_colab_bundle.zip": {
+      "sha256": "2efb3095ae5541c180fcbfcf6691338699036bb8da133b6cc314b68842eb84c2",
+      "bytes": 116789255
+    },
+    "results_sft_0.5b_nall_r16_lr1e-4_s42.zip": {
+      "sha256": "190538cbae578017be56c670656a982e5d14eeda83dab483a92f06da203619c5",
+      "bytes": 35034631
+    }
+  },
+  "adapter": {
+    "adapter_config.json": "8d90298f9f5aee2a228ac5b0f8a740817903f07a9731818664afc01d36a95447",
+    "adapter_model.safetensors": "7f35391b415472a483583a0b813ceea2dd6ee730c27b90dba1352ed69cb5ca30"
+  },
+  "original_evaluator_sha256": "deef510b8c72ee142fd0369435bd68a57ae6d0c35b275d60397781421964b7e4",
+  "upstream_integrated": "9b02b741ae880794c09f48dc76ddd609aa5b82cc",
+  "measurement_date": "2026-11-17",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left",
+    "seed": 42,
+    "eos_token_id": 151643
+  },
+  "audit": {
+    "saved_predictions_rescored": 2068,
+    "changed_rows": 0,
+    "new_model_inference": false,
+    "original_dataset_ids_preserved": true
+  }
+}

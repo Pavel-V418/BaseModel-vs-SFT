@@ -1,0 +1,90 @@
+{
+  "run_name": "sft_0.5b_nall_r16_lr1e-4_s42",
+  "config": {
+    "run_name": "sft_0.5b_nall_r16_lr1e-4_s42",
+    "model": "Qwen/Qwen2.5-0.5B",
+    "method": "lora",
+    "seed": 42,
+    "data": {
+      "train": "data/train.jsonl",
+      "val": "data/val.jsonl"
+    },
+    "train_size": null,
+    "val_size": 300,
+    "completion_only_loss": true,
+    "lora": {
+      "r": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": "all-linear"
+    },
+    "training": {
+      "learning_rate": 0.0001,
+      "num_train_epochs": 2,
+      "per_device_train_batch_size": 8,
+      "per_device_eval_batch_size": 8,
+      "gradient_accumulation_steps": 2,
+      "max_length": 1024,
+      "warmup_steps": 50,
+      "lr_scheduler_type": "cosine",
+      "eval_steps": 100,
+      "logging_steps": 10,
+      "gradient_checkpointing": true
+    },
+    "report_to": "none",
+    "wandb_project": "base-vs-sft",
+    "hub_repo": null
+  },
+  "env": {
+    "cuda": true,
+    "gpu": "Tesla T4",
+    "bf16": false,
+    "torch": "2.11.0+cu130",
+    "transformers": "5.20.2",
+    "trl": "1.18.0",
+    "peft": "0.21.3",
+    "datasets": "4.8.5",
+    "kaggle": true
+  },
+  "params": {
+    "total": 502830976,
+    "trainable": 8798208
+  },
+  "train_size": 6563,
+  "val_size": 300,
+  "eval_before": {
+    "eval_loss": 0.7539777755737305,
+    "eval_model_preparation_time": 0.0188,
+    "eval_runtime": 12.9736,
+    "eval_samples_per_second": 23.124,
+    "eval_steps_per_second": 2.929,
+    "eval_entropy": 0.7771197682932803,
+    "eval_mean_token_accuracy": 0.8024990652736864,
+    "eval_num_tokens": 0.0,
+    "epoch": 0,
+    "perplexity": 2.125437738123982
+  },
+  "eval_after": {
+    "eval_loss": 0.2919149100780487,
+    "eval_model_preparation_time": 0.0188,
+    "eval_runtime": 13.7893,
+    "eval_samples_per_second": 21.756,
+    "eval_steps_per_second": 2.756,
+    "eval_entropy": 0.20479254659853482,
+    "eval_mean_token_accuracy": 0.9150585877267938,
+    "eval_num_tokens": 3770648.0,
+    "epoch": 2.0,
+    "perplexity": 1.3389890783156508
+  },
+  "train_metrics": {
+    "train_runtime": 2831.7241,
+    "train_samples_per_second": 4.577,
+    "train_steps_per_second": 0.287,
+    "total_flos": 1.722270453445248e+16,
+    "train_loss": 0.1740338308690804,
+    "epoch": 2.0
+  },
+  "train_time_sec": 2832.2,
+  "best_checkpoint": "/kaggle/working/BaseModel-vs-SFT/outputs/sft_0.5b_nall_r16_lr1e-4_s42/checkpoint-300",
+  "adapter_dir": "/kaggle/working/BaseModel-vs-SFT/outputs/sft_0.5b_nall_r16_lr1e-4_s42/final"
+}
