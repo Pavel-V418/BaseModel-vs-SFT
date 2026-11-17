@@ -89,7 +89,7 @@ def _fmt_value(v, max_chars: int = 40) -> str:
 
 def _sample_rows(db_file: Path, table: str, n: int) -> list[tuple]:
     try:
-        conn = sqlite3.connect(f"file:{db_file}?mode=ro", uri=True)
+        conn = sqlite3.connect(f"{Path(db_file).resolve().as_uri()}?mode=ro", uri=True)
         conn.text_factory = lambda b: b.decode("utf-8", errors="replace")
         try:
             return conn.execute(f"SELECT * FROM {_q(table)} LIMIT {int(n)}").fetchall()
@@ -172,7 +172,7 @@ def execute_sql(db_file: Path, sql: str, timeout: float = 5.0) -> tuple[bool, st
     if not Path(db_file).exists():
         return False, f"database not found: {db_file}"
     try:
-        conn = sqlite3.connect(f"file:{db_file}?mode=ro", uri=True)
+        conn = sqlite3.connect(f"{Path(db_file).resolve().as_uri()}?mode=ro", uri=True)
     except sqlite3.Error as e:
         return False, f"cannot open db: {e}"
     conn.text_factory = lambda b: b.decode("utf-8", errors="replace")
