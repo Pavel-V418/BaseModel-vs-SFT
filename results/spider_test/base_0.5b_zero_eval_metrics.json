@@ -1,0 +1,65 @@
+{
+  "run_name": "base_0.5b_zero",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "model_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter": null,
+  "adapter_sha256": null,
+  "mode": "zero",
+  "fewshot_sha256": null,
+  "chat_template": false,
+  "spider_archive_sha256": "00636695dabed6b5f4b8328a16b13e069a2f16591d5efcce57660669c85b121b",
+  "dataset_split": "Spider 1.0 test",
+  "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
+  "source_commit": "f2198500509676bdd5390cc5219f73af10ebe5e4",
+  "evaluation_version": 2,
+  "num_examples": 2147,
+  "gpu": "Tesla T4",
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "peft": "0.18.0",
+    "accelerate": "1.15.0"
+  },
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left",
+    "seed": 42
+  },
+  "query_timeout_seconds": 5.0,
+  "predictions_sha256": "3e4cb04c433bd42f70036feaa7404e601b58c75774395b7d37f9c47536978e9f",
+  "overall": {
+    "execution_accuracy": 0.2207731718677224,
+    "exact_match": 0.09874243129948766,
+    "valid_sql_rate": 0.6469492314857941,
+    "stop_rate": 0.7587331159757802
+  },
+  "by_difficulty": {
+    "easy": {
+      "execution_accuracy": 0.48936170212765956,
+      "exact_match": 0.37872340425531914,
+      "valid_sql_rate": 0.8191489361702128,
+      "stop_rate": 0.6787234042553192
+    },
+    "medium": {
+      "execution_accuracy": 0.20420070011668612,
+      "exact_match": 0.01866977829638273,
+      "valid_sql_rate": 0.6732788798133023,
+      "stop_rate": 0.7572928821470245
+    },
+    "hard": {
+      "execution_accuracy": 0.09935205183585313,
+      "exact_match": 0.038876889848812095,
+      "valid_sql_rate": 0.5572354211663066,
+      "stop_rate": 0.8272138228941684
+    },
+    "extra": {
+      "execution_accuracy": 0.06442577030812324,
+      "exact_match": 0.0,
+      "valid_sql_rate": 0.4733893557422969,
+      "stop_rate": 0.7787114845938375
+    }
+  }
+}
