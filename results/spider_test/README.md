@@ -6,9 +6,10 @@ All five variants use the 2,147 released test questions and 40 test SQLite datab
 |---|---:|---:|---:|---:|
 | [Qwen2.5-0.5B base, zero-shot](base_0.5b_zero_eval_metrics.json) | 22.08% (474/2147) | 9.87% | 64.69% | 75.87% |
 | [Qwen2.5-0.5B + original LoRA, zero-shot](sft_0.5b_zero_eval_metrics.json) | 50.95% (1094/2147) | 36.47% | 75.55% | 100.00% |
+| [Qwen2.5-0.5B + expanded LoRA, zero-shot](sft_0.5b_expanded_zero_eval_metrics.json) | 46.30% (994/2147) | 32.60% | 70.84% | 99.58% |
 | [Qwen2.5-0.5B base, 4-shot](base_0.5b_few_eval_metrics.json) | 18.07% (388/2147) | 8.80% | 46.16% | 1.35% |
 
-Completed variants: 3/5.
+Completed variants: 4/5.
 
 SQL answers are recorded in the adjacent JSONL files. Each metrics JSON contains the breakdown by difficulty, model revision, data hashes and runtime versions. The earlier [Spider dev results](../README.md) use a separate 1,034-question split.
 

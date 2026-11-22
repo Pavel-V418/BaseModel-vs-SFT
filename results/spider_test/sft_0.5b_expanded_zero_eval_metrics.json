@@ -1,0 +1,65 @@
+{
+  "run_name": "sft_0.5b_expanded_zero",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "model_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter": "expanded",
+  "adapter_sha256": "bd31c75f5d4e9adb470b9d3eed60fc935269b98982264a4363934c9976a7b9cd",
+  "mode": "zero",
+  "fewshot_sha256": null,
+  "chat_template": false,
+  "spider_archive_sha256": "00636695dabed6b5f4b8328a16b13e069a2f16591d5efcce57660669c85b121b",
+  "dataset_split": "Spider 1.0 test",
+  "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
+  "source_commit": "ea0bf20cd72557e7f76dd026c58636fd39960650",
+  "evaluation_version": 2,
+  "num_examples": 2147,
+  "gpu": "Tesla T4",
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "peft": "0.18.0",
+    "accelerate": "1.15.0"
+  },
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left",
+    "seed": 42
+  },
+  "query_timeout_seconds": 5.0,
+  "predictions_sha256": "889d69cd90a6c996431d3960a2659412f0ee422a128fa2f15d01d6515d6a0d86",
+  "overall": {
+    "execution_accuracy": 0.46297158826269214,
+    "exact_match": 0.3260363297624592,
+    "valid_sql_rate": 0.7084303679552865,
+    "stop_rate": 0.9958081043316255
+  },
+  "by_difficulty": {
+    "easy": {
+      "execution_accuracy": 0.7425531914893617,
+      "exact_match": 0.6191489361702127,
+      "valid_sql_rate": 0.9042553191489362,
+      "stop_rate": 0.997872340425532
+    },
+    "medium": {
+      "execution_accuracy": 0.4644107351225204,
+      "exact_match": 0.33022170361726955,
+      "valid_sql_rate": 0.7152858809801633,
+      "stop_rate": 1.0
+    },
+    "hard": {
+      "execution_accuracy": 0.3563714902807775,
+      "exact_match": 0.22462203023758098,
+      "valid_sql_rate": 0.6198704103671706,
+      "stop_rate": 0.9935205183585313
+    },
+    "extra": {
+      "execution_accuracy": 0.22969187675070027,
+      "exact_match": 0.06162464985994398,
+      "valid_sql_rate": 0.5490196078431373,
+      "stop_rate": 0.9859943977591037
+    }
+  }
+}
