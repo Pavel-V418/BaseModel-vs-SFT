@@ -1,0 +1,79 @@
+{
+  "base_0.5b_zero": {
+    "examples": 16,
+    "independent_generations": 2,
+    "matches_full_run_prefix": true,
+    "predictions_sha256": "88f159171890816f2dc713dd53d2ee3c83574e4019b5e024aef52b56bbc63af3",
+    "overall": {
+      "execution_accuracy": 0.3125,
+      "exact_match": 0.1875,
+      "valid_sql_rate": 0.875,
+      "stop_rate": 0.875
+    },
+    "by_difficulty": {
+      "easy": {
+        "execution_accuracy": 0.4,
+        "exact_match": 0.3,
+        "valid_sql_rate": 0.8,
+        "stop_rate": 0.8
+      },
+      "medium": {
+        "execution_accuracy": 0.25,
+        "exact_match": 0.0,
+        "valid_sql_rate": 1.0,
+        "stop_rate": 1.0
+      },
+      "hard": {
+        "execution_accuracy": 0.0,
+        "exact_match": 0.0,
+        "valid_sql_rate": 1.0,
+        "stop_rate": 1.0
+      },
+      "extra": {
+        "execution_accuracy": 0.0,
+        "exact_match": 0.0,
+        "valid_sql_rate": 0.0,
+        "stop_rate": 0.0
+      }
+    }
+  },
+  "sft_0.5b_zero": {
+    "examples": 16,
+    "independent_generations": 2,
+    "matches_full_run_prefix": true,
+    "predictions_sha256": "df83b36265b1bc6a681ce1a9a58c84e586de0d80b3e01fae427c8852940e1e2a",
+    "overall": {
+      "execution_accuracy": 0.9375,
+      "exact_match": 0.75,
+      "valid_sql_rate": 1.0,
+      "stop_rate": 1.0
+    },
+    "by_difficulty": {
+      "easy": {
+        "execution_accuracy": 1.0,
+        "exact_match": 0.8,
+        "valid_sql_rate": 1.0,
+        "stop_rate": 1.0
+      },
+      "medium": {
+        "execution_accuracy": 1.0,
+        "exact_match": 1.0,
+        "valid_sql_rate": 1.0,
+        "stop_rate": 1.0
+      },
+      "hard": {
+        "execution_accuracy": 0.5,
+        "exact_match": 0.0,
+        "valid_sql_rate": 1.0,
+        "stop_rate": 1.0
+      },
+      "extra": {
+        "execution_accuracy": 0.0,
+        "exact_match": 0.0,
+        "valid_sql_rate": 0.0,
+        "stop_rate": 0.0
+      }
+    }
+  },
+  "source_commit": "ea0bf20cd72557e7f76dd026c58636fd39960650"
+}
