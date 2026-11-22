@@ -11,7 +11,7 @@
   "dataset_split": "Spider 1.0 test",
   "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
   "source_commit": "ea0bf20cd72557e7f76dd026c58636fd39960650",
-  "evaluation_version": 2,
+  "evaluation_version": 3,
   "num_examples": 2147,
   "gpu": "Tesla T4",
   "versions": {
@@ -29,11 +29,11 @@
     "seed": 42
   },
   "query_timeout_seconds": 5.0,
-  "predictions_sha256": "3577dcf1514c89d419b0aba09a0471b88eec7729c057f9e5690c4e0b1ba5a167",
+  "predictions_sha256": "cc341fa0d130e69332431f0b5da4e65c8b74342bdd6d8329741e3ec35a9adb01",
   "overall": {
     "execution_accuracy": 0.1807172799254774,
     "exact_match": 0.08802980903586399,
-    "valid_sql_rate": 0.4615742897065673,
+    "valid_sql_rate": 0.46110852352119236,
     "stop_rate": 0.01350721937587331
   },
   "by_difficulty": {
@@ -52,7 +52,7 @@
     "hard": {
       "execution_accuracy": 0.08639308855291576,
       "exact_match": 0.02591792656587473,
-      "valid_sql_rate": 0.38660907127429806,
+      "valid_sql_rate": 0.38444924406047515,
       "stop_rate": 0.012958963282937365
     },
     "extra": {
@@ -61,5 +61,10 @@
       "valid_sql_rate": 0.25770308123249297,
       "stop_rate": 0.022408963585434174
     }
+  },
+  "rescoring": {
+    "baseline_commit": "673d90294d93bce27c549604e52c5cc1558bcb26",
+    "baseline_predictions_sha256": "3577dcf1514c89d419b0aba09a0471b88eec7729c057f9e5690c4e0b1ba5a167",
+    "sqlite_version": "3.50.4"
   }
 }

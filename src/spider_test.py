@@ -13,7 +13,7 @@ from pathlib import Path
 
 from src.data import db_path, make_records
 from src.evaluate import (
-    BATCH_SIZE, MAX_NEW_TOKENS, QUERY_TIMEOUT, _fewshot_prefix, _generate,
+    BATCH_SIZE, EVALUATION_VERSION, MAX_NEW_TOKENS, QUERY_TIMEOUT, _fewshot_prefix, _generate,
     _query_rows, _read_jsonl, _saved_generations, evaluate_records, metric_summary,
 )
 
@@ -133,7 +133,7 @@ def run(name, records, fewshot, folder, adapter_bundle, results, source_commit):
         "mode": mode, "fewshot_sha256": FEWSHOT_SHA if mode == "few" else None,
         "chat_template": model_id == INSTRUCT, "spider_archive_sha256": SPIDER_SHA,
         "dataset_split": "Spider 1.0 test", "dataset_sha256": TEST_SHA,
-        "source_commit": source_commit, "evaluation_version": 2, "num_examples": len(records),
+        "source_commit": source_commit, "evaluation_version": EVALUATION_VERSION, "num_examples": len(records),
         "gpu": torch.cuda.get_device_name(0),
         "versions": {p: version(p) for p in ("torch", "transformers", "peft", "accelerate")},
         "generation": {"do_sample": False, "num_beams": 1, "max_new_tokens": MAX_NEW_TOKENS,

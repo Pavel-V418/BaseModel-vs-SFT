@@ -1,0 +1,849 @@
+{
+  "project_evaluation_version": 3,
+  "baseline_commit": "673d90294d93bce27c549604e52c5cc1558bcb26",
+  "new_model_inference": false,
+  "test_suite_status": {
+    "score": null,
+    "reason": "Official augmented SQLite archive exceeded its Google Drive download quota."
+  },
+  "splits": {
+    "dev": {
+      "num_examples": 1034,
+      "project_changes": {
+        "base_0.5b_few": {
+          "before": {
+            "execution_accuracy": 0.20019342359767892,
+            "exact_match": 0.08897485493230174,
+            "valid_sql_rate": 0.48549323017408125,
+            "stop_rate": 0.015473887814313346
+          },
+          "after": {
+            "execution_accuracy": 0.20212765957446807,
+            "exact_match": 0.08897485493230174,
+            "valid_sql_rate": 0.4874274661508704,
+            "stop_rate": 0.015473887814313346
+          },
+          "changes": [
+            {
+              "id": "test_0456",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            },
+            {
+              "id": "test_0457",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            }
+          ]
+        },
+        "base_0.5b_zero": {
+          "before": {
+            "execution_accuracy": 0.24468085106382978,
+            "exact_match": 0.07930367504835589,
+            "valid_sql_rate": 0.6160541586073501,
+            "stop_rate": 0.769825918762089
+          },
+          "after": {
+            "execution_accuracy": 0.24564796905222436,
+            "exact_match": 0.07930367504835589,
+            "valid_sql_rate": 0.6179883945841392,
+            "stop_rate": 0.769825918762089
+          },
+          "changes": [
+            {
+              "id": "test_0456",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            },
+            {
+              "id": "test_0457",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok"
+              ]
+            }
+          ]
+        },
+        "instruct_0.5b_zero": {
+          "before": {
+            "execution_accuracy": 0.2311411992263056,
+            "exact_match": 0.029013539651837523,
+            "valid_sql_rate": 0.49032882011605416,
+            "stop_rate": 0.7852998065764023
+          },
+          "after": {
+            "execution_accuracy": 0.2330754352030948,
+            "exact_match": 0.029013539651837523,
+            "valid_sql_rate": 0.4922630560928433,
+            "stop_rate": 0.7852998065764023
+          },
+          "changes": [
+            {
+              "id": "test_0456",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            },
+            {
+              "id": "test_0457",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            },
+            {
+              "id": "test_0735",
+              "db_id": "world_1",
+              "changed": [
+                "pred_sql"
+              ]
+            }
+          ]
+        },
+        "sft_0.5b_expanded_zero": {
+          "before": {
+            "execution_accuracy": 0.48452611218568664,
+            "exact_match": 0.3056092843326886,
+            "valid_sql_rate": 0.7253384912959381,
+            "stop_rate": 0.9970986460348162
+          },
+          "after": {
+            "execution_accuracy": 0.4864603481624758,
+            "exact_match": 0.3056092843326886,
+            "valid_sql_rate": 0.7272727272727273,
+            "stop_rate": 0.9970986460348162
+          },
+          "changes": [
+            {
+              "id": "test_0456",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            },
+            {
+              "id": "test_0457",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            }
+          ]
+        },
+        "sft_0.5b_zero": {
+          "before": {
+            "execution_accuracy": 0.4922630560928433,
+            "exact_match": 0.316247582205029,
+            "valid_sql_rate": 0.7340425531914894,
+            "stop_rate": 0.9990328820116054
+          },
+          "after": {
+            "execution_accuracy": 0.4941972920696325,
+            "exact_match": 0.316247582205029,
+            "valid_sql_rate": 0.7359767891682786,
+            "stop_rate": 0.9990328820116054
+          },
+          "changes": [
+            {
+              "id": "test_0456",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            },
+            {
+              "id": "test_0457",
+              "db_id": "wta_1",
+              "changed": [
+                "exec_ok",
+                "exec_match"
+              ]
+            }
+          ]
+        }
+      },
+      "spider_legacy": {
+        "upstream_commit": "b7b5b8c890cd30e35427348bb9eb8c6d1350ca7c",
+        "protocol": "legacy",
+        "sqlite_version": "3.50.4",
+        "query_timeout_seconds": 5.0,
+        "dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+        "gold_parse_errors": [],
+        "test_suite_files_per_database": null,
+        "runs": {
+          "base_0.5b_few": {
+            "num_examples": 1034,
+            "predictions_sha256": "9bf2a54ef5c14181e4207a9714a71f7ffcbae9756b2fb8eae4363c64b80217c1",
+            "exact_set_match": {
+              "correct": 143,
+              "evaluated": 1034,
+              "accuracy": 0.13829787234042554
+            },
+            "execution_accuracy": {
+              "correct": 187,
+              "evaluated": 1034,
+              "accuracy": 0.18085106382978725
+            },
+            "errors": {
+              "prediction_parser": 558
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 92,
+                "project_0_spider_0": 891,
+                "project_0_spider_1": 51
+              },
+              "execution": {
+                "project_1_spider_1": 181,
+                "project_0_spider_0": 819,
+                "project_0_spider_1": 6,
+                "project_1_spider_0": 28
+              }
+            }
+          },
+          "base_0.5b_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "006e8a7b5c7de02c0b2776ce2bc7f952ba75d069e39356744464d919b95ff74b",
+            "exact_set_match": {
+              "correct": 174,
+              "evaluated": 1034,
+              "accuracy": 0.16827852998065765
+            },
+            "execution_accuracy": {
+              "correct": 219,
+              "evaluated": 1034,
+              "accuracy": 0.21179883945841393
+            },
+            "errors": {
+              "prediction_parser": 501
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 82,
+                "project_0_spider_1": 92,
+                "project_0_spider_0": 860
+              },
+              "execution": {
+                "project_1_spider_1": 213,
+                "project_0_spider_0": 774,
+                "project_1_spider_0": 41,
+                "project_0_spider_1": 6
+              }
+            }
+          },
+          "instruct_0.5b_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "bfa1a0cb50a41167e539016eb631f78fa90892b3dc02b06664ce5f7330f53324",
+            "exact_set_match": {
+              "correct": 74,
+              "evaluated": 1034,
+              "accuracy": 0.07156673114119923
+            },
+            "execution_accuracy": {
+              "correct": 96,
+              "evaluated": 1034,
+              "accuracy": 0.09284332688588008
+            },
+            "errors": {
+              "prediction_parser": 844
+            },
+            "agreement": {
+              "exact": {
+                "project_0_spider_0": 960,
+                "project_0_spider_1": 44,
+                "project_1_spider_1": 30
+              },
+              "execution": {
+                "project_1_spider_0": 147,
+                "project_0_spider_0": 791,
+                "project_1_spider_1": 94,
+                "project_0_spider_1": 2
+              }
+            }
+          },
+          "sft_0.5b_expanded_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "5dfd66abe2197364c5ce3840a07c5dd34a07a667d6018dc806a34072e45a9b64",
+            "exact_set_match": {
+              "correct": 458,
+              "evaluated": 1034,
+              "accuracy": 0.44294003868471954
+            },
+            "execution_accuracy": {
+              "correct": 503,
+              "evaluated": 1034,
+              "accuracy": 0.4864603481624758
+            },
+            "errors": {
+              "prediction_parser": 286
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 316,
+                "project_0_spider_0": 576,
+                "project_0_spider_1": 142
+              },
+              "execution": {
+                "project_1_spider_1": 488,
+                "project_0_spider_0": 516,
+                "project_0_spider_1": 15,
+                "project_1_spider_0": 15
+              }
+            }
+          },
+          "sft_0.5b_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "1b716ab1f025a108ea53fb548003beec905f2360ae7cc992d7c077dc563aa02d",
+            "exact_set_match": {
+              "correct": 466,
+              "evaluated": 1034,
+              "accuracy": 0.4506769825918762
+            },
+            "execution_accuracy": {
+              "correct": 517,
+              "evaluated": 1034,
+              "accuracy": 0.5
+            },
+            "errors": {
+              "prediction_parser": 286
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 327,
+                "project_0_spider_0": 568,
+                "project_0_spider_1": 139
+              },
+              "execution": {
+                "project_1_spider_1": 494,
+                "project_0_spider_0": 500,
+                "project_0_spider_1": 23,
+                "project_1_spider_0": 17
+              }
+            }
+          }
+        }
+      },
+      "spider_test_suite": {
+        "upstream_commit": "e97acc546ecbee8fa27fa8dbf025ef61493a876c",
+        "protocol": "test-suite",
+        "sqlite_version": "3.50.4",
+        "query_timeout_seconds": 5.0,
+        "dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+        "gold_parse_errors": [],
+        "test_suite_files_per_database": null,
+        "runs": {
+          "base_0.5b_few": {
+            "num_examples": 1034,
+            "predictions_sha256": "9bf2a54ef5c14181e4207a9714a71f7ffcbae9756b2fb8eae4363c64b80217c1",
+            "exact_set_match": {
+              "correct": 143,
+              "evaluated": 1034,
+              "accuracy": 0.13829787234042554
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 558
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 92,
+                "project_0_spider_0": 891,
+                "project_0_spider_1": 51
+              },
+              "execution": {}
+            }
+          },
+          "base_0.5b_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "006e8a7b5c7de02c0b2776ce2bc7f952ba75d069e39356744464d919b95ff74b",
+            "exact_set_match": {
+              "correct": 174,
+              "evaluated": 1034,
+              "accuracy": 0.16827852998065765
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 501
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 82,
+                "project_0_spider_1": 92,
+                "project_0_spider_0": 860
+              },
+              "execution": {}
+            }
+          },
+          "instruct_0.5b_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "bfa1a0cb50a41167e539016eb631f78fa90892b3dc02b06664ce5f7330f53324",
+            "exact_set_match": {
+              "correct": 74,
+              "evaluated": 1034,
+              "accuracy": 0.07156673114119923
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 844
+            },
+            "agreement": {
+              "exact": {
+                "project_0_spider_0": 960,
+                "project_0_spider_1": 44,
+                "project_1_spider_1": 30
+              },
+              "execution": {}
+            }
+          },
+          "sft_0.5b_expanded_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "5dfd66abe2197364c5ce3840a07c5dd34a07a667d6018dc806a34072e45a9b64",
+            "exact_set_match": {
+              "correct": 458,
+              "evaluated": 1034,
+              "accuracy": 0.44294003868471954
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 286
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 316,
+                "project_0_spider_0": 576,
+                "project_0_spider_1": 142
+              },
+              "execution": {}
+            }
+          },
+          "sft_0.5b_zero": {
+            "num_examples": 1034,
+            "predictions_sha256": "1b716ab1f025a108ea53fb548003beec905f2360ae7cc992d7c077dc563aa02d",
+            "exact_set_match": {
+              "correct": 466,
+              "evaluated": 1034,
+              "accuracy": 0.4506769825918762
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 286
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 327,
+                "project_0_spider_0": 568,
+                "project_0_spider_1": 139
+              },
+              "execution": {}
+            }
+          }
+        }
+      }
+    },
+    "test": {
+      "num_examples": 2147,
+      "project_changes": {
+        "base_0.5b_few": {
+          "before": {
+            "execution_accuracy": 0.1807172799254774,
+            "exact_match": 0.08802980903586399,
+            "valid_sql_rate": 0.4615742897065673,
+            "stop_rate": 0.01350721937587331
+          },
+          "after": {
+            "execution_accuracy": 0.1807172799254774,
+            "exact_match": 0.08802980903586399,
+            "valid_sql_rate": 0.46110852352119236,
+            "stop_rate": 0.01350721937587331
+          },
+          "changes": [
+            {
+              "id": "test_0447",
+              "db_id": "cre_Students_Information_Systems",
+              "changed": [
+                "exec_ok"
+              ]
+            }
+          ]
+        },
+        "base_0.5b_zero": {
+          "before": {
+            "execution_accuracy": 0.2207731718677224,
+            "exact_match": 0.09874243129948766,
+            "valid_sql_rate": 0.6469492314857941,
+            "stop_rate": 0.7587331159757802
+          },
+          "after": {
+            "execution_accuracy": 0.2207731718677224,
+            "exact_match": 0.09874243129948766,
+            "valid_sql_rate": 0.6469492314857941,
+            "stop_rate": 0.7587331159757802
+          },
+          "changes": [
+            {
+              "id": "test_0498",
+              "db_id": "cre_Students_Information_Systems",
+              "changed": [
+                "pred_sql"
+              ]
+            },
+            {
+              "id": "test_1050",
+              "db_id": "aan_1",
+              "changed": [
+                "pred_sql"
+              ]
+            }
+          ]
+        },
+        "instruct_0.5b_zero": {
+          "before": {
+            "execution_accuracy": 0.2463903120633442,
+            "exact_match": 0.04937121564974383,
+            "valid_sql_rate": 0.5253842571029343,
+            "stop_rate": 0.8015836050302748
+          },
+          "after": {
+            "execution_accuracy": 0.2463903120633442,
+            "exact_match": 0.04937121564974383,
+            "valid_sql_rate": 0.5253842571029343,
+            "stop_rate": 0.8015836050302748
+          },
+          "changes": [
+            {
+              "id": "test_1885",
+              "db_id": "planet_1",
+              "changed": [
+                "pred_sql"
+              ]
+            }
+          ]
+        },
+        "sft_0.5b_expanded_zero": {
+          "before": {
+            "execution_accuracy": 0.46297158826269214,
+            "exact_match": 0.3260363297624592,
+            "valid_sql_rate": 0.7084303679552865,
+            "stop_rate": 0.9958081043316255
+          },
+          "after": {
+            "execution_accuracy": 0.46297158826269214,
+            "exact_match": 0.3260363297624592,
+            "valid_sql_rate": 0.7084303679552865,
+            "stop_rate": 0.9958081043316255
+          },
+          "changes": []
+        },
+        "sft_0.5b_zero": {
+          "before": {
+            "execution_accuracy": 0.5095482068001863,
+            "exact_match": 0.36469492314857943,
+            "valid_sql_rate": 0.7554727526781556,
+            "stop_rate": 1.0
+          },
+          "after": {
+            "execution_accuracy": 0.5095482068001863,
+            "exact_match": 0.36469492314857943,
+            "valid_sql_rate": 0.7554727526781556,
+            "stop_rate": 1.0
+          },
+          "changes": []
+        }
+      },
+      "spider_legacy": {
+        "upstream_commit": "b7b5b8c890cd30e35427348bb9eb8c6d1350ca7c",
+        "protocol": "legacy",
+        "sqlite_version": "3.50.4",
+        "query_timeout_seconds": 5.0,
+        "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
+        "gold_parse_errors": [],
+        "test_suite_files_per_database": null,
+        "runs": {
+          "base_0.5b_few": {
+            "num_examples": 2147,
+            "predictions_sha256": "cc341fa0d130e69332431f0b5da4e65c8b74342bdd6d8329741e3ec35a9adb01",
+            "exact_set_match": {
+              "correct": 310,
+              "evaluated": 2147,
+              "accuracy": 0.14438751746623196
+            },
+            "execution_accuracy": {
+              "correct": 341,
+              "evaluated": 2147,
+              "accuracy": 0.15882626921285514
+            },
+            "errors": {
+              "prediction_parser": 1206
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 189,
+                "project_0_spider_0": 1837,
+                "project_0_spider_1": 121
+              },
+              "execution": {
+                "project_1_spider_1": 334,
+                "project_0_spider_0": 1752,
+                "project_1_spider_0": 54,
+                "project_0_spider_1": 7
+              }
+            }
+          },
+          "base_0.5b_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "41e9133c7ec16c01559a2f69f2a2ce86425e6c69019ea2bd4702c271bfe1cdae",
+            "exact_set_match": {
+              "correct": 356,
+              "evaluated": 2147,
+              "accuracy": 0.16581276199347927
+            },
+            "execution_accuracy": {
+              "correct": 395,
+              "evaluated": 2147,
+              "accuracy": 0.183977643223102
+            },
+            "errors": {
+              "prediction_parser": 1011
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 212,
+                "project_0_spider_0": 1791,
+                "project_0_spider_1": 144
+              },
+              "execution": {
+                "project_1_spider_1": 383,
+                "project_0_spider_0": 1661,
+                "project_1_spider_0": 91,
+                "project_0_spider_1": 12
+              }
+            }
+          },
+          "instruct_0.5b_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "07f91bafec53dd60a33a22eb5f6847651d1c15bd8c22ce5cc667b6c77ae3d9f0",
+            "exact_set_match": {
+              "correct": 224,
+              "evaluated": 2147,
+              "accuracy": 0.10433162552398696
+            },
+            "execution_accuracy": {
+              "correct": 265,
+              "evaluated": 2147,
+              "accuracy": 0.12342803912435957
+            },
+            "errors": {
+              "prediction_parser": 1621
+            },
+            "agreement": {
+              "exact": {
+                "project_0_spider_0": 1923,
+                "project_1_spider_1": 106,
+                "project_0_spider_1": 118
+              },
+              "execution": {
+                "project_1_spider_0": 266,
+                "project_1_spider_1": 263,
+                "project_0_spider_0": 1616,
+                "project_0_spider_1": 2
+              }
+            }
+          },
+          "sft_0.5b_expanded_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "889d69cd90a6c996431d3960a2659412f0ee422a128fa2f15d01d6515d6a0d86",
+            "exact_set_match": {
+              "correct": 924,
+              "evaluated": 2147,
+              "accuracy": 0.4303679552864462
+            },
+            "execution_accuracy": {
+              "correct": 1002,
+              "evaluated": 2147,
+              "accuracy": 0.4666977177456917
+            },
+            "errors": {
+              "prediction_parser": 628
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 700,
+                "project_0_spider_1": 224,
+                "project_0_spider_0": 1223
+              },
+              "execution": {
+                "project_1_spider_1": 965,
+                "project_0_spider_0": 1116,
+                "project_1_spider_0": 29,
+                "project_0_spider_1": 37
+              }
+            }
+          },
+          "sft_0.5b_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "7bca3a62ca2549e829581773bd76a4397b0df9d2db3049278a5b4241b04a8f8d",
+            "exact_set_match": {
+              "correct": 1020,
+              "evaluated": 2147,
+              "accuracy": 0.4750815090824406
+            },
+            "execution_accuracy": {
+              "correct": 1112,
+              "evaluated": 2147,
+              "accuracy": 0.5179319981369352
+            },
+            "errors": {
+              "prediction_parser": 543
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 783,
+                "project_0_spider_1": 237,
+                "project_0_spider_0": 1127
+              },
+              "execution": {
+                "project_1_spider_1": 1054,
+                "project_0_spider_0": 995,
+                "project_0_spider_1": 58,
+                "project_1_spider_0": 40
+              }
+            }
+          }
+        }
+      },
+      "spider_test_suite": {
+        "upstream_commit": "e97acc546ecbee8fa27fa8dbf025ef61493a876c",
+        "protocol": "test-suite",
+        "sqlite_version": "3.50.4",
+        "query_timeout_seconds": 5.0,
+        "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
+        "gold_parse_errors": [],
+        "test_suite_files_per_database": null,
+        "runs": {
+          "base_0.5b_few": {
+            "num_examples": 2147,
+            "predictions_sha256": "cc341fa0d130e69332431f0b5da4e65c8b74342bdd6d8329741e3ec35a9adb01",
+            "exact_set_match": {
+              "correct": 310,
+              "evaluated": 2147,
+              "accuracy": 0.14438751746623196
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 1208
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 189,
+                "project_0_spider_0": 1837,
+                "project_0_spider_1": 121
+              },
+              "execution": {}
+            }
+          },
+          "base_0.5b_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "41e9133c7ec16c01559a2f69f2a2ce86425e6c69019ea2bd4702c271bfe1cdae",
+            "exact_set_match": {
+              "correct": 356,
+              "evaluated": 2147,
+              "accuracy": 0.16581276199347927
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 1011
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 212,
+                "project_0_spider_0": 1791,
+                "project_0_spider_1": 144
+              },
+              "execution": {}
+            }
+          },
+          "instruct_0.5b_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "07f91bafec53dd60a33a22eb5f6847651d1c15bd8c22ce5cc667b6c77ae3d9f0",
+            "exact_set_match": {
+              "correct": 224,
+              "evaluated": 2147,
+              "accuracy": 0.10433162552398696
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 1621
+            },
+            "agreement": {
+              "exact": {
+                "project_0_spider_0": 1923,
+                "project_1_spider_1": 106,
+                "project_0_spider_1": 118
+              },
+              "execution": {}
+            }
+          },
+          "sft_0.5b_expanded_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "889d69cd90a6c996431d3960a2659412f0ee422a128fa2f15d01d6515d6a0d86",
+            "exact_set_match": {
+              "correct": 911,
+              "evaluated": 2147,
+              "accuracy": 0.424312994876572
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 647
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 690,
+                "project_0_spider_1": 221,
+                "project_0_spider_0": 1226,
+                "project_1_spider_0": 10
+              },
+              "execution": {}
+            }
+          },
+          "sft_0.5b_zero": {
+            "num_examples": 2147,
+            "predictions_sha256": "7bca3a62ca2549e829581773bd76a4397b0df9d2db3049278a5b4241b04a8f8d",
+            "exact_set_match": {
+              "correct": 1010,
+              "evaluated": 2147,
+              "accuracy": 0.4704238472286912
+            },
+            "execution_accuracy": null,
+            "errors": {
+              "prediction_parser": 559
+            },
+            "agreement": {
+              "exact": {
+                "project_1_spider_1": 774,
+                "project_0_spider_1": 236,
+                "project_0_spider_0": 1128,
+                "project_1_spider_0": 9
+              },
+              "execution": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

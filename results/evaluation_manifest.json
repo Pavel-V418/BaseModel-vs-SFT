@@ -93,5 +93,7 @@
     "changed_rows": 0,
     "new_model_inference": false,
     "original_dataset_ids_preserved": true
-  }
+  },
+  "reference_results_commit": "673d90294d93bce27c549604e52c5cc1558bcb26",
+  "current_evaluation_review": "evaluation_review.json"
 }

@@ -1,5 +1,5 @@
 {
-  "evaluation_version": 2,
+  "evaluation_version": 3,
   "rescored_from": null,
   "run_name": "sft_0.5b_expanded_zero",
   "model": "Qwen/Qwen2.5-0.5B",
@@ -15,9 +15,9 @@
   },
   "query_timeout_seconds": 5.0,
   "overall": {
-    "execution_accuracy": 0.48452611218568664,
+    "execution_accuracy": 0.4864603481624758,
     "exact_match": 0.3056092843326886,
-    "valid_sql_rate": 0.7253384912959381,
+    "valid_sql_rate": 0.7272727272727273,
     "stop_rate": 0.9970986460348162
   },
   "by_difficulty": {
@@ -28,9 +28,9 @@
       "stop_rate": 1.0
     },
     "medium": {
-      "execution_accuracy": 0.48654708520179374,
+      "execution_accuracy": 0.4910313901345291,
       "exact_match": 0.30269058295964124,
-      "valid_sql_rate": 0.7107623318385651,
+      "valid_sql_rate": 0.7152466367713004,
       "stop_rate": 0.9977578475336323
     },
     "hard": {
@@ -61,5 +61,10 @@
     "peft": "0.18.0",
     "accelerate": "1.15.0"
   },
-  "predictions_sha256": "13c453c46aa7f9c04d812eb64d04c54ebb30800eb5da835433d26c63a4331467"
+  "predictions_sha256": "5dfd66abe2197364c5ce3840a07c5dd34a07a667d6018dc806a34072e45a9b64",
+  "rescoring": {
+    "baseline_commit": "673d90294d93bce27c549604e52c5cc1558bcb26",
+    "baseline_predictions_sha256": "13c453c46aa7f9c04d812eb64d04c54ebb30800eb5da835433d26c63a4331467",
+    "sqlite_version": "3.50.4"
+  }
 }

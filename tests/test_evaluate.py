@@ -78,6 +78,27 @@ def test_empty_and_administrative_sql_cannot_match_empty_gold(tmp_path):
         assert row['exec_match'] is False, prediction
 
 
+def test_invalid_utf8_in_sqlite_text_preserves_bytes_and_type(tmp_path):
+    import sqlite3
+
+    from src.evaluate import evaluate_records
+
+    database = tmp_path / "invalid_text.sqlite"
+    with sqlite3.connect(database) as connection:
+        connection.execute("CREATE TABLE item (value TEXT)")
+        connection.execute("INSERT INTO item VALUES (CAST(X'FF' AS TEXT))")
+
+    record = {"db_id": "invalid_text", "gold_sql": "SELECT value FROM item"}
+    for sql, expected_match in (
+        ("SELECT value FROM item", True),
+        ("SELECT CAST(X'FE' AS TEXT)", False),
+        ("SELECT X'FF'", False),
+    ):
+        row = evaluate_records([record], [(sql, True)], database_resolver=lambda _: database)[0]
+        assert row["exec_ok"] is True
+        assert row["exec_match"] is expected_match
+
+
 def test_sql_cannot_create_external_files(tmp_path):
     import sqlite3
     from src.evaluate import _query_rows
@@ -136,3 +157,27 @@ def test_saved_predictions_must_match_test_records(tmp_path):
     path.write_text('', encoding='utf-8')
     with pytest.raises(ValueError, match='count'):
         _saved_generations(path, records)
+
+
+def test_cli_rescores_saved_predictions_against_selected_spider_dir(tmp_path):
+    import json
+    import sqlite3
+
+    from src.evaluate import main
+
+    database = tmp_path / "database" / "tiny" / "tiny.sqlite"
+    database.parent.mkdir(parents=True)
+    with sqlite3.connect(database) as connection:
+        connection.execute("CREATE TABLE item (value TEXT)")
+        connection.execute("INSERT INTO item VALUES ('x;y')")
+    record = {"id": "x", "db_id": "tiny", "question": "value", "gold_sql": "SELECT value FROM item"}
+    data = tmp_path / "questions.jsonl"
+    predictions = tmp_path / "saved.jsonl"
+    data.write_text(json.dumps(record) + "\n", encoding="utf-8")
+    predictions.write_text(json.dumps({**record, "raw_output": "SELECT 'x;y';", "stopped": True}) + "\n",
+                           encoding="utf-8")
+
+    assert main(["--model", "unused", "--predictions", str(predictions), "--data", str(data),
+                 "--spider-dir", str(tmp_path), "--run_name", "rescore", "--results_dir", str(tmp_path)]) == 0
+    result = json.loads((tmp_path / "rescore_eval.jsonl").read_text(encoding="utf-8"))
+    assert result["exec_match"] is True

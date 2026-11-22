@@ -13,9 +13,9 @@
   },
   "query_timeout_seconds": 5.0,
   "overall": {
-    "execution_accuracy": 0.24468085106382978,
+    "execution_accuracy": 0.24564796905222436,
     "exact_match": 0.07930367504835589,
-    "valid_sql_rate": 0.6160541586073501,
+    "valid_sql_rate": 0.6179883945841392,
     "stop_rate": 0.769825918762089
   },
   "by_difficulty": {
@@ -26,9 +26,9 @@
       "stop_rate": 0.7217741935483871
     },
     "medium": {
-      "execution_accuracy": 0.2242152466367713,
+      "execution_accuracy": 0.226457399103139,
       "exact_match": 0.011210762331838564,
-      "valid_sql_rate": 0.6098654708520179,
+      "valid_sql_rate": 0.6143497757847534,
       "stop_rate": 0.7892376681614349
     },
     "hard": {
@@ -44,6 +44,12 @@
       "stop_rate": 0.7469879518072289
     }
   },
-  "evaluation_version": 2,
-  "rescored_from": "20261117_145842_results.zip"
+  "evaluation_version": 3,
+  "rescored_from": "20261117_145842_results.zip",
+  "rescoring": {
+    "baseline_commit": "673d90294d93bce27c549604e52c5cc1558bcb26",
+    "baseline_predictions_sha256": "b5eda28c3190bd1e589637af64e62abf1309d96acd594a9f1349cba69241f442",
+    "sqlite_version": "3.50.4"
+  },
+  "predictions_sha256": "006e8a7b5c7de02c0b2776ce2bc7f952ba75d069e39356744464d919b95ff74b"
 }

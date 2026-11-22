@@ -11,7 +11,7 @@
   "dataset_split": "Spider 1.0 test",
   "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
   "source_commit": "ea0bf20cd72557e7f76dd026c58636fd39960650",
-  "evaluation_version": 2,
+  "evaluation_version": 3,
   "num_examples": 2147,
   "gpu": "Tesla T4",
   "versions": {
@@ -29,7 +29,7 @@
     "seed": 42
   },
   "query_timeout_seconds": 5.0,
-  "predictions_sha256": "13b4d53f0eda798e5cb6574db96d3a9b9343f6bf8e3c5487fdf86ba406b67aff",
+  "predictions_sha256": "07f91bafec53dd60a33a22eb5f6847651d1c15bd8c22ce5cc667b6c77ae3d9f0",
   "overall": {
     "execution_accuracy": 0.2463903120633442,
     "exact_match": 0.04937121564974383,
@@ -61,5 +61,10 @@
       "valid_sql_rate": 0.3641456582633053,
       "stop_rate": 0.5994397759103641
     }
+  },
+  "rescoring": {
+    "baseline_commit": "673d90294d93bce27c549604e52c5cc1558bcb26",
+    "baseline_predictions_sha256": "13b4d53f0eda798e5cb6574db96d3a9b9343f6bf8e3c5487fdf86ba406b67aff",
+    "sqlite_version": "3.50.4"
   }
 }

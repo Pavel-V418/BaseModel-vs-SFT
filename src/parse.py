@@ -5,7 +5,15 @@ import re
 
 
 _SQL_FENCE = re.compile(r"\x60{3}sql\s*(.*?)\s*(?:\x60{3}|$)", re.IGNORECASE | re.DOTALL)
-_STOP_MARKERS = (";", "\n\n", "Вопрос:", "<|endoftext|>")
+_SQL_BOUNDARIES = re.compile(
+    r"--[^\r\n]*|/\*.*?(?:\*/|$)"
+    r"|'(?:''|[^'])*(?:'|$)"
+    r'|"(?:""|[^"])*(?:"|$)'
+    r"|`(?:``|[^`])*(?:`|$)|\[[^\]]*(?:\]|$)"
+    r"|(?P<open>\()|(?P<close>\))|(?P<blank>\r?\n\r?\n)"
+    r"|(?P<stop>;|Вопрос:|<\|endoftext\|>)",
+    re.DOTALL,
+)
 
 
 def extract_sql(model_output: str) -> str:
@@ -15,6 +23,13 @@ def extract_sql(model_output: str) -> str:
     if fenced:
         text = fenced.group(1)
 
-    end = min((position for marker in _STOP_MARKERS
-               if (position := text.find(marker)) >= 0), default=len(text))
-    return text[:end].strip()
+    depth = 0
+    for token in _SQL_BOUNDARIES.finditer(text):
+        kind = token.lastgroup
+        if kind == "stop" or (kind == "blank" and depth == 0):
+            return text[:token.start()].strip()
+        if kind == "open":
+            depth += 1
+        elif kind == "close":
+            depth = max(0, depth - 1)
+    return text.strip()

@@ -12,17 +12,19 @@ import re
 import sqlite3
 import time
 from collections import Counter
+from functools import partial
 from numbers import Integral, Real
 from pathlib import Path
 from typing import Any, Iterable
 
-from src.data import clean_sql, db_path
+from src.data import DEFAULT_SPIDER_DIR, clean_sql, db_path
 from src.parse import extract_sql
 
 ROOT = Path(__file__).resolve().parent.parent
 BATCH_SIZE = 16
 MAX_NEW_TOKENS = 256
 QUERY_TIMEOUT = 5.0
+EVALUATION_VERSION = 3
 DIFFICULTIES = ("easy", "medium", "hard", "extra")
 
 
@@ -90,10 +92,12 @@ def _read_jsonl(path: Path) -> list[dict[str, Any]]:
         return [json.loads(line) for line in stream if line.strip()]
 
 
-def _query_rows(database: Path, sql: str, timeout: float = QUERY_TIMEOUT) -> list[tuple[Any, ...]]:
-    """Execute one query using a read-only SQLite URI and an interrupt deadline."""
+def _read_connection(database: Path, timeout: float = QUERY_TIMEOUT, *, text_errors="surrogateescape") -> sqlite3.Connection:
+    """Open a read-only connection with an interrupt deadline for one query."""
     uri = f"{database.resolve().as_uri()}?mode=ro"
     connection = sqlite3.connect(uri, uri=True)
+    # Keep invalid UTF-8 bytes distinct from each other and from SQLite BLOBs.
+    connection.text_factory = lambda value: value.decode("utf-8", errors=text_errors)
     # Sort/group temporary tables stay in memory, including restricted runtimes.
     connection.execute("PRAGMA temp_store=MEMORY")
     allowed = {sqlite3.SQLITE_SELECT, sqlite3.SQLITE_READ, sqlite3.SQLITE_FUNCTION, sqlite3.SQLITE_RECURSIVE}
@@ -103,6 +107,11 @@ def _query_rows(database: Path, sql: str, timeout: float = QUERY_TIMEOUT) -> lis
     )
     deadline = time.monotonic() + timeout
     connection.set_progress_handler(lambda: int(time.monotonic() > deadline), 1_000)
+    return connection
+
+
+def _query_rows(database: Path, sql: str, timeout: float = QUERY_TIMEOUT) -> list[tuple[Any, ...]]:
+    connection = _read_connection(database, timeout)
     try:
         cursor = connection.execute(sql)
         if cursor.description is None:
@@ -256,6 +265,8 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--adapter", help="Optional PEFT adapter path for SFT evaluation")
     parser.add_argument("--mode", choices=("zero", "few"), default="zero")
     parser.add_argument("--data", type=Path, default=ROOT / "data" / "test.jsonl")
+    parser.add_argument("--spider-dir", type=Path, default=DEFAULT_SPIDER_DIR,
+                        help="Spider dataset directory with the database/ subdirectory")
     parser.add_argument("--fewshot", type=Path, default=ROOT / "data" / "fewshot.jsonl")
     parser.add_argument("--limit", type=int, help="Evaluate only the first N examples")
     parser.add_argument("--run_name", required=True, help="Prefix for result files")
@@ -295,7 +306,8 @@ def main(argv: list[str] | None = None) -> int:
         model = load_model(args.model, adapter=args.adapter)
         prompts = [prefix + example["prompt"] for example in records]
         generations = _generate(model, tokenizer, prompts)
-    results = evaluate_records(records, generations, timeout=args.timeout)
+    database_resolver = partial(db_path, spider_dir=args.spider_dir)
+    results = evaluate_records(records, generations, timeout=args.timeout, database_resolver=database_resolver)
 
     args.results_dir.mkdir(parents=True, exist_ok=True)
     eval_path = args.results_dir / f"{args.run_name}_eval.jsonl"
@@ -304,7 +316,7 @@ def main(argv: list[str] | None = None) -> int:
         for row in results:
             stream.write(json.dumps(row, ensure_ascii=False) + "\n")
     summary = {
-        "evaluation_version": 2,
+        "evaluation_version": EVALUATION_VERSION,
         "rescored_from": args.predictions.name if args.predictions is not None else None,
         "run_name": args.run_name,
         "model": args.model,

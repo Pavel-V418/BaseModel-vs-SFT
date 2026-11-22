@@ -27,3 +27,19 @@ def test_returns_plain_sql_without_terminator():
 
 def test_empty_output_returns_empty_sql():
     assert extract_sql("") == ""
+
+
+@pytest.mark.parametrize("sql", [
+    "SELECT 'it''s; fine', 'Вопрос: <|endoftext|>\n\n'",
+    'SELECT "a;b", `c;d`, [e;f] FROM t',
+    "SELECT /* comment;\n\nВопрос: ignored */ 1",
+    "SELECT -- comment; Вопрос: ignored\n 1",
+    "SELECT * FROM (SELECT 'x;y'\n\n AS name) AS sub",
+])
+def test_ignores_stop_markers_inside_sql(sql):
+    assert extract_sql(sql + ";\n\nВопрос: next") == sql
+
+
+def test_preserves_truncated_sql_for_execution():
+    sql = "SELECT * FROM (SELECT 'x;y"
+    assert extract_sql(sql) == sql
