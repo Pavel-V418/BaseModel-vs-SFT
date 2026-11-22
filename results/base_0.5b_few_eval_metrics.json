@@ -1,0 +1,65 @@
+{
+  "evaluation_version": 2,
+  "rescored_from": null,
+  "run_name": "base_0.5b_few",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "adapter": null,
+  "mode": "few",
+  "num_examples": 1034,
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left"
+  },
+  "query_timeout_seconds": 5.0,
+  "overall": {
+    "execution_accuracy": 0.20019342359767892,
+    "exact_match": 0.08897485493230174,
+    "valid_sql_rate": 0.48549323017408125,
+    "stop_rate": 0.015473887814313346
+  },
+  "by_difficulty": {
+    "easy": {
+      "execution_accuracy": 0.46774193548387094,
+      "exact_match": 0.29838709677419356,
+      "valid_sql_rate": 0.717741935483871,
+      "stop_rate": 0.004032258064516129
+    },
+    "medium": {
+      "execution_accuracy": 0.1591928251121076,
+      "exact_match": 0.03587443946188341,
+      "valid_sql_rate": 0.452914798206278,
+      "stop_rate": 0.02242152466367713
+    },
+    "hard": {
+      "execution_accuracy": 0.09195402298850575,
+      "exact_match": 0.011494252873563218,
+      "valid_sql_rate": 0.41954022988505746,
+      "stop_rate": 0.011494252873563218
+    },
+    "extra": {
+      "execution_accuracy": 0.024096385542168676,
+      "exact_match": 0.0,
+      "valid_sql_rate": 0.29518072289156627,
+      "stop_rate": 0.018072289156626505
+    }
+  },
+  "model_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter_sha256": null,
+  "chat_template": false,
+  "dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+  "input_sha256": "f3c19975aa482b78902f1380f2e31daa79b7b61ed0f323abe9293eff8df1af16",
+  "rendered_dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+  "fewshot_sha256": "25114622a92023c89514da93aa362db7a2372f16cf8ca61ee096792a283d321e",
+  "evaluator_commit": "4ee0f7b5cdeea96c116ba610f347ea563d1507fd",
+  "gpu": "Tesla T4",
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "peft": "0.18.0",
+    "accelerate": "1.15.0"
+  },
+  "predictions_sha256": "2a3b0b840b8cbf968b7a64397589257faaa2b2186615ebe98c0a846ac981d297"
+}
