@@ -1,0 +1,65 @@
+{
+  "evaluation_version": 2,
+  "rescored_from": null,
+  "run_name": "sft_0.5b_expanded_zero",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "adapter": "outputs/sft_0.5b_nfull_others_r16_lr1e-4_s42_2ep/final",
+  "mode": "zero",
+  "num_examples": 1034,
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left"
+  },
+  "query_timeout_seconds": 5.0,
+  "overall": {
+    "execution_accuracy": 0.48452611218568664,
+    "exact_match": 0.3056092843326886,
+    "valid_sql_rate": 0.7253384912959381,
+    "stop_rate": 0.9970986460348162
+  },
+  "by_difficulty": {
+    "easy": {
+      "execution_accuracy": 0.6854838709677419,
+      "exact_match": 0.5201612903225806,
+      "valid_sql_rate": 0.8870967741935484,
+      "stop_rate": 1.0
+    },
+    "medium": {
+      "execution_accuracy": 0.48654708520179374,
+      "exact_match": 0.30269058295964124,
+      "valid_sql_rate": 0.7107623318385651,
+      "stop_rate": 0.9977578475336323
+    },
+    "hard": {
+      "execution_accuracy": 0.39655172413793105,
+      "exact_match": 0.22988505747126436,
+      "valid_sql_rate": 0.6724137931034483,
+      "stop_rate": 0.9885057471264368
+    },
+    "extra": {
+      "execution_accuracy": 0.2710843373493976,
+      "exact_match": 0.07228915662650602,
+      "valid_sql_rate": 0.5783132530120482,
+      "stop_rate": 1.0
+    }
+  },
+  "model_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter_sha256": "bd31c75f5d4e9adb470b9d3eed60fc935269b98982264a4363934c9976a7b9cd",
+  "chat_template": false,
+  "dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+  "input_sha256": "f3c19975aa482b78902f1380f2e31daa79b7b61ed0f323abe9293eff8df1af16",
+  "rendered_dataset_sha256": "07def41c02ff1bef775a2dd7ca0fc676b405d38b8e762d9bb32624e9aa328b03",
+  "fewshot_sha256": null,
+  "evaluator_commit": "4ee0f7b5cdeea96c116ba610f347ea563d1507fd",
+  "gpu": "Tesla T4",
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "peft": "0.18.0",
+    "accelerate": "1.15.0"
+  },
+  "predictions_sha256": "13c453c46aa7f9c04d812eb64d04c54ebb30800eb5da835433d26c63a4331467"
+}
