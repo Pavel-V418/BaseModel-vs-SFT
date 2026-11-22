@@ -1,0 +1,65 @@
+{
+  "run_name": "base_0.5b_few",
+  "model": "Qwen/Qwen2.5-0.5B",
+  "model_revision": "060db6499f32faf8b98477b0a26969ef7d8b9987",
+  "adapter": null,
+  "adapter_sha256": null,
+  "mode": "few",
+  "fewshot_sha256": "25114622a92023c89514da93aa362db7a2372f16cf8ca61ee096792a283d321e",
+  "chat_template": false,
+  "spider_archive_sha256": "00636695dabed6b5f4b8328a16b13e069a2f16591d5efcce57660669c85b121b",
+  "dataset_split": "Spider 1.0 test",
+  "dataset_sha256": "29d5638dbe53dd36b24ddef2384b7a365f2af65c085d044ab7b032f4c1bdcf06",
+  "source_commit": "ea0bf20cd72557e7f76dd026c58636fd39960650",
+  "evaluation_version": 2,
+  "num_examples": 2147,
+  "gpu": "Tesla T4",
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "peft": "0.18.0",
+    "accelerate": "1.15.0"
+  },
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 256,
+    "batch_size": 16,
+    "padding_side": "left",
+    "seed": 42
+  },
+  "query_timeout_seconds": 5.0,
+  "predictions_sha256": "3577dcf1514c89d419b0aba09a0471b88eec7729c057f9e5690c4e0b1ba5a167",
+  "overall": {
+    "execution_accuracy": 0.1807172799254774,
+    "exact_match": 0.08802980903586399,
+    "valid_sql_rate": 0.4615742897065673,
+    "stop_rate": 0.01350721937587331
+  },
+  "by_difficulty": {
+    "easy": {
+      "execution_accuracy": 0.474468085106383,
+      "exact_match": 0.3468085106382979,
+      "valid_sql_rate": 0.7085106382978723,
+      "stop_rate": 0.0
+    },
+    "medium": {
+      "execution_accuracy": 0.1353558926487748,
+      "exact_match": 0.01633605600933489,
+      "valid_sql_rate": 0.4515752625437573,
+      "stop_rate": 0.01750291715285881
+    },
+    "hard": {
+      "execution_accuracy": 0.08639308855291576,
+      "exact_match": 0.02591792656587473,
+      "valid_sql_rate": 0.38660907127429806,
+      "stop_rate": 0.012958963282937365
+    },
+    "extra": {
+      "execution_accuracy": 0.025210084033613446,
+      "exact_match": 0.0,
+      "valid_sql_rate": 0.25770308123249297,
+      "stop_rate": 0.022408963585434174
+    }
+  }
+}
