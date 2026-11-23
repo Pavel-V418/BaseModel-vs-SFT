@@ -1,0 +1,36 @@
+# Qwen2.5-1.5B Base + LoRA на расширенном Spider.
+# Подготовка: python -m src.data --spider_dir data/spider --out_dir data/spider_others --val_size 400 --seed 42 --include_others
+run_name: sft_1.5b_nfull_others_r16_lr1e-4_s42_2ep
+model: Qwen/Qwen2.5-1.5B
+method: lora
+seed: 42
+
+data:
+  train: data/spider_others/train.jsonl
+  val: data/spider_others/val.jsonl
+train_size: null
+val_size: 300
+completion_only_loss: true
+
+lora:
+  r: 16
+  alpha: 32
+  dropout: 0.05
+  target_modules: all-linear
+
+training:
+  learning_rate: 1.0e-4
+  num_train_epochs: 2
+  per_device_train_batch_size: 2
+  per_device_eval_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_length: 1024
+  warmup_steps: 50
+  lr_scheduler_type: cosine
+  eval_steps: 50
+  logging_steps: 10
+  gradient_checkpointing: true
+
+# src.train выбирает fp16 на T4 и bf16 на Ampere и новее.
+report_to: none
+hub_repo: null
