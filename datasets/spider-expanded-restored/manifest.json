@@ -1,0 +1,45 @@
+{
+  "name": "spider-expanded-restored-from-code",
+  "source_repository": "Pavel-V418/BaseModel-vs-SFT",
+  "source_git_commit": "9b02b741ae880794c09f48dc76ddd609aa5b82cc",
+  "source_archive_sha256": "00636695dabed6b5f4b8328a16b13e069a2f16591d5efcce57660669c85b121b",
+  "parameters": {
+    "val_size_raw": 400,
+    "seed": 42,
+    "include_others": true,
+    "model_val_size": 300
+  },
+  "reference_1_5b_stats_match": "counts + database counts + difficulty + dropped queries",
+  "raw_counts": {
+    "train": 8222,
+    "val": 434,
+    "test": 1034
+  },
+  "identity_note": "Exact historic train/val byte identity is not proven without archived JSONL SHA-256.",
+  "files": {
+    "train.jsonl": {
+      "sha256": "8e2d09fc4d143e0bb882818acd0bf643212ea274de88dc936b5c73f3eab53a68",
+      "bytes": 13810427
+    },
+    "val.jsonl": {
+      "sha256": "eacf8d412d43141c0e1eb8ee36331de527e67c55e80f23dbcdc72d6706aa0b1a",
+      "bytes": 668310
+    },
+    "val_used_300.jsonl": {
+      "sha256": "9977d8899c048ce55331980b82832b424b576fc2dedb480a4e9595484fa2dfdb",
+      "bytes": 471383
+    },
+    "test.jsonl": {
+      "sha256": "732da67dbcf1b883d3110900fec9b1d034fbb767a28f9ddfb49bff464bb64f50",
+      "bytes": 1368572
+    },
+    "fewshot.jsonl": {
+      "sha256": "60af3ec24af6dfa654aeecaba77a200215eba174bf9f2cc5711936910a778480",
+      "bytes": 4178
+    },
+    "stats.json": {
+      "sha256": "33c5e08d65ac1a275877aababdb664846693638bdfcebab8711550f48bcab5b7",
+      "bytes": 3663
+    }
+  }
+}
